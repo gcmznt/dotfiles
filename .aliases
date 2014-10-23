@@ -7,11 +7,13 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # programs
-alias slt='open -a "Sublime Text 2"'
-alias subl='open -a "Sublime Text 2"'
+#alias slt='open -a "Sublime Text"'
+#alias subl='open -a "Sublime Text"'
+alias slt='subl -a'
 # also/or do this:
 # ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
+alias mou='open -a Mou'
 
 # be nice
 alias please=sudo
