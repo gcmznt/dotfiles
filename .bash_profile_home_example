@@ -1,0 +1,3 @@
+default_username='giko'
+[ -r '/Users/giko/utils/dotfiles/.bash_profile' ] && source /Users/giko/utils/dotfiles/.bash_profile
+
