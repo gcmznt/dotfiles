@@ -16,6 +16,7 @@ alias slt='subl -a'
 
 alias mou='open -a Mou'
 alias redis='redis-server /usr/local/etc/redis.conf'
+alias r='npm run'
 
 # be nice
 alias please=sudo
