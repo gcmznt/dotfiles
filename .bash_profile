@@ -10,6 +10,13 @@ unset file
 # init z   https://github.com/rupa/z
 [ -r "$DIR/z/z.sh" ] && source "$DIR/z/z.sh"
 
+if [ -f "$DIR/git-completion.bash" ]; then
+  source "$DIR/git-completion.bash"
+  
+  # Add git completion to aliases
+  __git_complete g __git_main
+fi
+
 # init rvm
 # source ~/.rvm/scripts/rvm
 
