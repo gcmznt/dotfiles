@@ -135,3 +135,8 @@ function extract() {
 		echo "'$1' is not a valid file"
 	fi
 }
+
+function dir() {
+	find . -iname "$@" -exec ls -lh {} \;
+	find . -iname "$@" -print0 | xargs -0 du -csh | tail -n 1;
+}
