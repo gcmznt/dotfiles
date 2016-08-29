@@ -1,0 +1,25 @@
+"*":
+  core:
+    closeEmptyWindows: false
+    destroyEmptyPanes: false
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax"
+    ]
+  editor:
+    fontFamily: "Fira code"
+    lineHeight: 2
+    scrollPastEnd: true
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+  "exception-reporting":
+    userId: "9b42a8b0-29ea-1f96-4fc4-13558247a1ed"
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+    lintInlineJavaScript: true
+  minimap:
+    absoluteMode: true
+  welcome:
+    showOnStartup: false
