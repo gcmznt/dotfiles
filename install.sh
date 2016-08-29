@@ -85,6 +85,7 @@ npm i -g bower
 npm i -g webpack
 npm i -g pug-lint
 npm i -g stylelint
+npm i -g diff-so-fancy
 
 ## atom
 apm install atom-material-syntax
@@ -103,10 +104,6 @@ apm install autocomplete-emojis
 apm install atom-beautify
 apm install linter
 
-# configure git
-git config --global user.name "Giacomo Zinetti"
-git config --global user.email "giacomo.zinetti@giko.it"
-
 # configure npm
 npm adduser
 
@@ -122,6 +119,9 @@ cd dotfiles
 ## init z submodule
 git submodule init
 git submodule update
+
+# configure git
+cp ~/works/dotfiles/.gitconfig ~/.gitconfig
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
