@@ -63,6 +63,7 @@ open -a moom
 open -a alfred\ 3
 
 ## node
+npm i -g npm
 npm i -g caniuse-cmd
 npm i -g code-stats
 npm i -g http-server
