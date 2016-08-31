@@ -28,6 +28,7 @@ sudo easy_install httpcode
 ## terminal
 brew install coreutils
 brew install node
+brew install the_silver_searcher
 
 ## applications
 brew cask install google-chrome
