@@ -53,6 +53,7 @@ brew cask install moom
 brew cask install slack
 brew cask install itsycal
 brew cask install numi
+brew cask install keepingyouawake
 # Missing from cask Mou, Sip and Gestimer
 
 ## fonts
@@ -62,6 +63,7 @@ brew cask install font-fira-code
 open -a itsycal
 open -a moom
 open -a alfred\ 3
+open -a keepingyouawake
 
 ## node
 npm i -g npm
