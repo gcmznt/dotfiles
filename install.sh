@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# generate and print public ssh-key
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
-printf "\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n"
-
-# remove last login message in terminal
-touch ~/.hushlogin
-
 # set the hostname
 echo "Enter the name for the computer:"
 read newhostname
@@ -113,6 +106,9 @@ apm install autocomplete-emojis
 apm install atom-beautify
 apm install linter
 
+# remove last login message in terminal
+touch ~/.hushlogin
+
 # configure npm
 npm adduser
 
@@ -193,3 +189,7 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder AppleShowAllFiles YES
 # reload all application affected
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+# generate and print public ssh-key
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+printf "\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n"
