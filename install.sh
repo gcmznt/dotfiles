@@ -30,7 +30,7 @@ brew install coreutils
 brew install node
 brew install the_silver_searcher
 
-## applications
+## browsers
 brew cask install google-chrome
 brew cask install google-chrome-canary
 brew cask install firefox
@@ -41,6 +41,11 @@ brew cask install opera
 # brew cask install opera-developer
 # brew cask install safari-technology-preview
 # brew cask install webkit-nightly
+# brew cask install brave
+# brew cask install vivaldi
+# brew cask install blisk
+
+## applications
 brew cask install iterm2
 brew cask install atom
 brew cask install visual-studio-code
