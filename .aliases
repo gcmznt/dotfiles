@@ -1,7 +1,7 @@
 
 # Shortcuts
 alias a='atom -a'
-# alias b=''
+alias b='git-bc'
 alias c='catcolored'
 alias d='gz'
 alias e='extract'
