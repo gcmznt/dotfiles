@@ -21,5 +21,6 @@
     lintInlineJavaScript: true
   minimap:
     absoluteMode: true
+    minimapScrollIndicator: false
   welcome:
     showOnStartup: false
