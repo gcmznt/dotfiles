@@ -39,6 +39,7 @@ brew cask install opera
 # brew cask install brave
 # brew cask install vivaldi
 # brew cask install blisk
+# brew cask install servo
 
 ## applications
 brew cask install iterm2
@@ -107,6 +108,7 @@ apm install editorconfig
 apm install autocomplete-emojis
 apm install atom-beautify
 apm install linter
+apm install linter-eslint
 
 # remove last login message in terminal
 touch ~/.hushlogin
