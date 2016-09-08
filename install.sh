@@ -20,6 +20,8 @@ sudo easy_install httpcode
 
 ## terminal
 brew install coreutils
+brew install tree
+brew install googler
 brew install node
 brew install the_silver_searcher
 
