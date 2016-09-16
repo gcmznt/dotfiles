@@ -47,6 +47,7 @@ brew cask install atom
 brew cask install visual-studio-code
 brew cask install sublime-text
 brew cask install alfred
+brew cask install lacona
 brew cask install git
 brew cask install docker
 brew cask install transmit
@@ -109,6 +110,8 @@ apm install autocomplete-emojis
 apm install atom-beautify
 apm install linter
 apm install linter-eslint
+# apm install linter-lesshint
+apm install linter-stylelint
 
 # remove last login message in terminal
 touch ~/.hushlogin
