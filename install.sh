@@ -56,7 +56,9 @@ brew cask install slack
 brew cask install itsycal
 brew cask install numi
 brew cask install keepingyouawake
-# Missing from cask Mou, Sip and Gestimer
+brew cask install kap
+brew cask install mou
+# Missing from cask Sip and Gestimer
 
 ## fonts
 brew cask install font-fira-code
