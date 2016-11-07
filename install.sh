@@ -24,6 +24,7 @@ brew install tree
 brew install googler
 brew install node
 brew install the_silver_searcher
+brew install exiftool
 
 ## browsers
 brew cask install google-chrome
@@ -136,6 +137,7 @@ git submodule update
 
 # configure git
 cp ~/works/dotfiles/.gitconfig ~/.gitconfig
+git config diff.exif.textconv exiftool
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile

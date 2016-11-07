@@ -5,12 +5,18 @@
   core:
     closeEmptyWindows: false
     destroyEmptyPanes: false
+    disabledPackages: [
+      "react"
+      "whitespace"
+    ]
+    telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
       "atom-material-syntax"
     ]
   editor:
     fontFamily: "Fira code"
+    fontSize: 15
     lineHeight: 2
     scrollPastEnd: true
     showIndentGuide: true
@@ -22,6 +28,10 @@
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
     lintInlineJavaScript: true
+  "linter-lesshint":
+    onlyWithRc: true
+  "linter-stylelint":
+    useStandard: true
   minimap:
     absoluteMode: true
     minimapScrollIndicator: false
