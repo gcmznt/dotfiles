@@ -60,6 +60,7 @@ brew cask install numi
 brew cask install keepingyouawake
 brew cask install kap
 brew cask install mou
+brew cask install vlc
 # Missing from cask Sip and Gestimer
 
 ## fonts
