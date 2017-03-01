@@ -20,7 +20,7 @@ alias p='caniuse'
 alias q='ag'
 alias r='npm run'
 alias s='subl -a'
-alias t='googler -p 10.0.2.33:800 -n 5 --np'
+alias t='googler -n 5 --np'
 # alias u=''
 alias v="vim"
 alias w='wget'
@@ -47,6 +47,7 @@ alias slt='subl -a'
 
 alias mou='open -a Mou'
 alias redis='redis-server /usr/local/etc/redis.conf'
+alias ag='ag --hidden'
 
 # be nice
 alias please=sudo
