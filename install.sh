@@ -26,6 +26,7 @@ brew install node
 brew install the_silver_searcher
 brew install exiftool
 brew install jid
+brew install fzf
 
 ## browsers
 brew cask install google-chrome

@@ -16,7 +16,6 @@
     ]
   editor:
     fontFamily: "Fira code"
-    fontSize: 15
     lineHeight: 2
     scrollPastEnd: true
     showIndentGuide: true
@@ -25,6 +24,9 @@
     softWrapAtPreferredLineLength: true
   "exception-reporting":
     userId: "9b42a8b0-29ea-1f96-4fc4-13558247a1ed"
+  "file-icons":
+    onChanges: true
+  linter: {}
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
     lintInlineJavaScript: true
@@ -32,8 +34,10 @@
     onlyWithRc: true
   "linter-stylelint":
     useStandard: true
+  "linter-ui-default": {}
   minimap:
     absoluteMode: true
     minimapScrollIndicator: false
+  "tree-view": {}
   welcome:
     showOnStartup: false
