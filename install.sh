@@ -63,6 +63,7 @@ brew cask install kap
 brew cask install mou
 brew cask install vlc
 # Missing from cask Sip and Gestimer
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package quicklookase qlvideo
 
 ## fonts
 brew cask install font-fira-code
