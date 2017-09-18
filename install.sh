@@ -145,7 +145,7 @@ git submodule update
 
 # configure git
 cp ~/works/dotfiles/.gitconfig ~/.gitconfig
-git config diff.exif.textconv exiftool
+git config --global diff.exif.textconv exiftool
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
