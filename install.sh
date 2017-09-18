@@ -123,6 +123,10 @@ apm install linter-stylelint
 # remove last login message in terminal
 touch ~/.hushlogin
 
+# generate and print public ssh-key
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+printf "\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n"
+
 # configure npm
 npm adduser
 
@@ -204,7 +208,3 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder AppleShowAllFiles YES
 # reload all application affected
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
-
-# generate and print public ssh-key
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
-printf "\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n"
