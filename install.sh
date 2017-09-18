@@ -133,7 +133,7 @@ cd works
 mkdir playground
 
 # clone and setup dotfiles
-git clone git@github.com:giacomozinetti/dotfiles.git
+git clone git@github.com:gcmznt/dotfiles.git
 cd dotfiles
 ## init z submodule
 git submodule init
