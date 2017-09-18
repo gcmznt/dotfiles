@@ -27,6 +27,7 @@ brew install the_silver_searcher
 brew install exiftool
 brew install jid
 brew install fzf
+brew install git
 
 ## browsers
 brew cask install google-chrome
@@ -51,7 +52,6 @@ brew cask install visual-studio-code
 brew cask install sublime-text
 brew cask install alfred
 brew cask install lacona
-brew cask install git
 brew cask install docker
 brew cask install transmit
 brew cask install moom
