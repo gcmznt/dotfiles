@@ -28,6 +28,7 @@ brew install exiftool
 brew install jid
 brew install fzf
 brew install git
+brew install yarn
 
 ## browsers
 brew cask install google-chrome
@@ -47,12 +48,9 @@ brew cask install opera
 
 ## applications
 brew cask install iterm2
-brew cask install atom
-brew cask install visual-studio-code
-brew cask install sublime-text
-brew cask install alfred
-brew cask install lacona
-brew cask install docker
+brew cask install atom visual-studio-code sublime-text mou
+brew cask install alfred lacona
+# brew cask install docker
 brew cask install transmit
 brew cask install moom
 brew cask install slack
@@ -60,17 +58,15 @@ brew cask install itsycal
 brew cask install numi
 brew cask install keepingyouawake
 brew cask install kap
-brew cask install mou
 brew cask install vlc
-# Missing from cask Sip and Gestimer
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package quicklookase qlvideo
+printf "\n==== Install from app store ====\nSip, Moom and Gestimer\n===========\n"
 
 ## fonts
 brew cask install font-fira-code
 
 # open background applications
 open -a itsycal
-open -a moom
 open -a alfred\ 3
 open -a keepingyouawake
 
@@ -101,24 +97,24 @@ npm i -g stylelint
 npm i -g diff-so-fancy
 
 ## atom
-apm install atom-material-syntax
-apm install atom-material-ui
-apm install minimap
-apm install pigments
-apm install set-syntax
-apm install sort-lines
-apm install unsaved-changes
-apm install keyboard-scroll
-apm install filesize
-apm install file-icons
-apm install emmet
-apm install editorconfig
-apm install autocomplete-emojis
-apm install atom-beautify
-apm install linter
-apm install linter-eslint
-# apm install linter-lesshint
-apm install linter-stylelint
+# apm install atom-material-syntax
+# apm install atom-material-ui
+# apm install minimap
+# apm install pigments
+# apm install set-syntax
+# apm install sort-lines
+# apm install unsaved-changes
+# apm install keyboard-scroll
+# apm install filesize
+# apm install file-icons
+# apm install emmet
+# apm install editorconfig
+# apm install autocomplete-emojis
+# apm install atom-beautify
+# apm install linter
+# apm install linter-eslint
+# # apm install linter-lesshint
+# apm install linter-stylelint
 
 # remove last login message in terminal
 touch ~/.hushlogin
@@ -151,8 +147,8 @@ git config --global diff.exif.textconv exiftool
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
 
 # symlink atom configuration
-ln -s ~/works/dotfiles/.atom/config.cson ~/.atom/config.cson
-ln -s ~/works/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
+# ln -s ~/works/dotfiles/.atom/config.cson ~/.atom/config.cson
+# ln -s ~/works/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
 
 # configure macosx (https://gist.github.com/erikh/2260182)
 ## Enable full keyboard access for all controls
