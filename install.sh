@@ -62,6 +62,7 @@ brew cask install vlc
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package quicklookase qlvideo
 printf "\n==== Install from app store ====\nSip, Moom and Gestimer\n===========\n"
 brew cask install aerial
+brew cask install tunnelbear
 
 ## fonts
 brew cask install font-fira-code
