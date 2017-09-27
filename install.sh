@@ -63,6 +63,7 @@ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch 
 printf "\n==== Install from app store ====\nSip, Moom and Gestimer\n===========\n"
 brew cask install aerial
 brew cask install tunnelbear
+brew cask install tunnelblick
 
 ## fonts
 brew cask install font-fira-code
