@@ -19,24 +19,24 @@ sudo easy_install -U Pygments
 sudo easy_install httpcode
 
 ## terminal
-brew install coreutils
-brew install tree
-brew install googler
-brew install node
-brew install the_silver_searcher
-brew install exiftool
-brew install jid
-brew install fzf
-brew install git
-brew install yarn
+brew install coreutils \
+             tree \
+             googler \
+             node \
+             the_silver_searcher \
+             exiftool \
+             jid \
+             fzf \
+             git \
+             yarn
 
 ## browsers
-brew cask install google-chrome
-brew cask install google-chrome-canary
-brew cask install firefox
+brew cask install google-chrome \
+                  firefox
+# brew cask install google-chrome-canary
 # brew cask install firefox-beta
-brew cask install firefoxdeveloperedition
-brew cask install opera
+# brew cask install firefoxdeveloperedition
+# brew cask install opera
 # brew cask install opera-beta
 # brew cask install opera-developer
 # brew cask install safari-technology-preview
@@ -47,23 +47,28 @@ brew cask install opera
 # brew cask install servo
 
 ## applications
-brew cask install iterm2
-brew cask install atom visual-studio-code sublime-text mou
-brew cask install alfred lacona
+brew cask install iterm2 \
+                  visual-studio-code \
+                  mou \
+                  alfred \
+                  transmit \
+                  slack \
+                  itsycal \
+                  numi \
+                  keepingyouawake \
+                  kap \
+                  vlc \
+                  qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv qlimagesize webpquicklook suspicious-package quicklookase qlvideo \
+                  aerial \
+                  tunnelbear
+
+# brew cask install betterzipql
+# brew cask install tunnelblick
+# brew cask install lacona
+# brew cask install atom
+# brew cask install sublime-text
 # brew cask install docker
-brew cask install transmit
-brew cask install moom
-brew cask install slack
-brew cask install itsycal
-brew cask install numi
-brew cask install keepingyouawake
-brew cask install kap
-brew cask install vlc
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package quicklookase qlvideo
 printf "\n==== Install from app store ====\nSip, Moom and Gestimer\n===========\n"
-brew cask install aerial
-brew cask install tunnelbear
-brew cask install tunnelblick
 
 ## fonts
 brew cask install font-fira-code
@@ -74,50 +79,28 @@ open -a alfred\ 3
 open -a keepingyouawake
 
 ## node
-npm i -g npm
-npm i -g caniuse-cmd
-npm i -g code-stats
-npm i -g http-server
-npm i -g nodemon
-npm i -g space-hogs
-npm i -g tldr
-npm i -g git-bc
-npm i -g how2
-npm i -g sloc
-npm i -g stylestats
-npm i -g webpagetest
-npm i -g yo
-npm i -g pageres-cli
-npm i -g ntl
-npm i -g jshint
-npm i -g gulp-cli
-npm i -g grunt-cli
-npm i -g eslint
-npm i -g bower
-npm i -g webpack
-npm i -g pug-lint
-npm i -g stylelint
-npm i -g diff-so-fancy
-
-## atom
-# apm install atom-material-syntax
-# apm install atom-material-ui
-# apm install minimap
-# apm install pigments
-# apm install set-syntax
-# apm install sort-lines
-# apm install unsaved-changes
-# apm install keyboard-scroll
-# apm install filesize
-# apm install file-icons
-# apm install emmet
-# apm install editorconfig
-# apm install autocomplete-emojis
-# apm install atom-beautify
-# apm install linter
-# apm install linter-eslint
-# # apm install linter-lesshint
-# apm install linter-stylelint
+npm i -g npm \
+         caniuse-cmd \
+         code-stats \
+         http-server \
+         nodemon \
+         space-hogs \
+         tldr \
+         git-bc \
+         how2 \
+         sloc \
+         stylestats \
+         webpagetest \
+         yo \
+         pageres-cli \
+         ntl \
+         gulp-cli \
+         grunt-cli \
+         eslint \
+         bower \
+         webpack \
+         stylelint \
+         diff-so-fancy
 
 # remove last login message in terminal
 touch ~/.hushlogin
@@ -133,7 +116,6 @@ npm adduser
 cd ~
 mkdir works
 cd works
-mkdir playground
 
 # clone and setup dotfiles
 git clone git@github.com:gcmznt/dotfiles.git
@@ -148,10 +130,6 @@ git config --global diff.exif.textconv exiftool
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
-
-# symlink atom configuration
-# ln -s ~/works/dotfiles/.atom/config.cson ~/.atom/config.cson
-# ln -s ~/works/dotfiles/.atom/keymap.cson ~/.atom/keymap.cson
 
 # configure macosx (https://gist.github.com/erikh/2260182)
 ## Enable full keyboard access for all controls
@@ -199,11 +177,11 @@ defaults write NSGlobalDomain KeyRepeat -int 0.02
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-# Use current directory as default search scope in Finder
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
+# Change Apple OS X Dock size
+defaults write com.apple.dock tilesize -int 32
 # reload all application affected
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
