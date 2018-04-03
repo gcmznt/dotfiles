@@ -25,7 +25,7 @@ alias t='googler -n 5 --np'
 alias v="vim"
 alias w='wget'
 # alias x=''
-alias y='yo'
+alias y='yarn'
 alias z='z'
 
 
