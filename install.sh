@@ -107,8 +107,9 @@ touch ~/.hushlogin
 
 # generate and print public ssh-key
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
-printf "\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n"
+printf "\n\n\n==== Generated SSH Public key ====\n`cat ~/.ssh/id_rsa.pub`\n===========\n\n"
 
+printf "\n\n\n==== Login on NPM ====\n"
 # configure npm
 npm adduser
 
@@ -118,7 +119,7 @@ mkdir works
 cd works
 
 # clone and setup dotfiles
-git clone git@github.com:gcmznt/dotfiles.git
+git clone https://github.com/gcmznt/dotfiles.git
 cd dotfiles
 ## init z submodule
 git submodule init
