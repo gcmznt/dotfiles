@@ -49,7 +49,6 @@ brew cask install google-chrome \
 ## applications
 brew cask install iterm2 \
                   visual-studio-code \
-                  mou \
                   alfred \
                   transmit \
                   slack \
@@ -62,6 +61,7 @@ brew cask install iterm2 \
                   aerial \
                   tunnelbear
 
+# brew cask install mou
 # brew cask install betterzipql
 # brew cask install tunnelblick
 # brew cask install lacona
