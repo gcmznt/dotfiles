@@ -49,7 +49,6 @@ brew cask install google-chrome \
 ## applications
 brew cask install iterm2 \
                   visual-studio-code \
-                  mou \
                   alfred \
                   transmit \
                   slack \
@@ -62,6 +61,7 @@ brew cask install iterm2 \
                   aerial \
                   tunnelbear
 
+# brew cask install mou
 # brew cask install betterzipql
 # brew cask install tunnelblick
 # brew cask install lacona
@@ -131,6 +131,7 @@ git config --global diff.exif.textconv exiftool
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
+cp ~/works/dotfiles/.inputrc ~/.inputrc
 
 # configure macosx (https://gist.github.com/erikh/2260182)
 ## Enable full keyboard access for all controls
