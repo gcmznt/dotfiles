@@ -140,3 +140,8 @@ function dir() {
 	find . -iname "$@" -exec ls -lh {} \;
 	find . -iname "$@" -print0 | xargs -0 du -csh | tail -n 1;
 }
+
+function cs() {
+	echo "curl cht.sh/$1/$2"
+	curl cht.sh/"$1"/"$2"
+}

@@ -2,7 +2,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
 # ~/.extra can be used for settings you don’t want to commit
-for file in $DIR/.{extra,bash_prompt,exports,aliases,functions}; do
+for file in $DIR/.{extra,bash_prompt,exports,aliases,liferay,functions}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file

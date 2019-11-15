@@ -1,0 +1,136 @@
+# inside ~/.bash_profile (do not use ~ in the path to identify the home)
+# export LR_DEV_HOME="/Users/username/works/liferay"
+
+alias 71="cd $LR_DEV_HOME/7.1/"
+alias 72="cd $LR_DEV_HOME/7.2/"
+
+alias lr-start="_lr-check-env && _lr-log-clean && _lr-configure && _lr-start && _lr-log"
+alias lr-log="_lr-check-env && _lr-log"
+alias lr-shutdown="_lr-check-env && _lr-shutdown"
+alias lr-deploy="_lr-deploy"
+alias lr-gogo="_lr-gogo"
+alias lr-cleanup="_lr-check-env && _lr-cleanup"
+alias lr-configure="_lr-check-env && _lr-configure"
+alias lr-sf="_lr-sf"
+
+
+_LR_MEM_RE='s/Xmx[0-9]*[a-zA-Z]/Xmx3G/g'
+_LR_PORT1_RE="s/port=\"8080\"/port=\"${LR_PORT_PREFIX}80\"/g"
+_LR_PORT2_RE="s/port=\"8005\"/port=\"${LR_PORT_PREFIX}05\"/g"
+
+RED='\033[31m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+DEFAULT='\033[39m\033[0m'
+ITALIC='\033[3m'
+
+function _lr-start() {
+  _lr-log-task "🚀  STARTING LIFERAY"
+  _lr_execute \
+    "cd $LR_DEV_HOME" \
+    "echo ./$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/bin/startup.sh" \
+    "cd -"
+}
+
+function _lr-shutdown() {
+  _lr-log-task "✋  SHUTTING DOWN LIFERAY"
+  _lr_execute \
+    "cd $LR_DEV_HOME" \
+    "sh ./$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/bin/shutdown.sh" \
+    "cd -"
+}
+
+function _lr-deploy() {
+  PROFILE_PARAM=$([ -z "$LR_PROFILE" ] && echo "" || echo " -Dbuild.profile=$LR_PROFILE")
+  _lr-log-task "🚂  DEPLOYING"
+  _lr_execute "blade gw deploy --parallel$PROFILE_PARAM"
+}
+
+function _lr-sf() {
+  _lr-log-task "💡  FORMATTING SOURCES"
+  _lr_execute "blade gw formatSource"
+}
+
+function _lr-gogo() {
+  TELNET_PORT=$([ -z "$LR_GOGO_PORT" ] && echo "11311" || echo "$LR_GOGO_PORT")
+  _lr-log-task "⌨️  ACCESSING GOGO SHELL"
+  _lr_execute "telnet localhost $TELNET_PORT"
+}
+
+
+function _lr-log {
+  _lr-log-task "📝  PRINTING LOG"
+  _lr_execute "tail -f -n 200 $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
+}
+
+function _lr-log-clean {
+  _lr-log-task "🧽  REMOVING LOG"
+  _lr_execute "cp /dev/null $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
+}
+
+function _lr-cleanup {
+  _lr-log-task "🧹  DELETING work, state and data"
+  _lr_execute \
+    "cd $LR_DEV_HOME/$LR_FOLDER/bundles" \
+    "rm -rf ./data ./work ./osgi/state" \
+    "cd -"
+}
+
+function _lr-configure {
+  _lr-log-task "🌈  CONFIGURING"
+  _lr_execute \
+    "cd $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION" \
+    "sed -i.bkp -e $_LR_PORT1_RE -e $_LR_PORT2_RE ./conf/server.xml" \
+    "sed -i.bkp -e $_LR_MEM_RE ./bin/setenv.sh" \
+    "cd -"
+}
+
+function _lr-check-env {
+  if [ -z "$LR_VERSION" ] || [ -z "$LR_TOMCAT_VERSION" ]
+  then
+    _lr-log-error "🔴  Not in a Liferay ENV"
+    return 1
+  fi
+}
+
+function _lr-mysql-start() {
+  if [ "$(pgrep mysql | wc -l)" -ne 1 ];
+  then
+    echo "mysql.server start"
+  fi
+}
+
+function _lr-mysql-clean() {
+  if [ -z "$LR_DB_USER" ] || [ -z "$LR_DB_PASSWORD" ] || [ -z "$LR_DB_DATABASE" ]
+  then
+    echo -e "${RED}Mysql not configured${DEFAULT}"
+  else
+    echo -e "${GREEN}DROPPING DATABASE${DEFAULT}"
+    mysql -u $LR_DB_USER -p$LR_DB_PASSWORD << END
+drop database $LR_DB_DATABASE;
+create database $LR_DB_DATABASE;
+END
+  fi
+}
+
+function _lr_execute {
+  # set -x
+  for i; do 
+    _lr-log-command "$i"
+    $i
+  done
+  # set +x
+  echo ""
+}
+
+function _lr-log-error {
+  echo -e "$RED$1$DEFAULT"
+}
+
+function _lr-log-task {
+  echo -e "$GREEN[$1]$DEFAULT"
+}
+
+function _lr-log-command {
+  echo -e "$ $YELLOW$ITALIC$1$DEFAULT"
+}
