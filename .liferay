@@ -10,6 +10,7 @@
 # export LR_DB_PASSWORD="liferay"
 # export LR_DB_DATABASE="liferay_commerce"
 
+alias lr="cd $LR_DEV_HOME"
 alias lr-start="_lr-check-env && _lr-log-clean && _lr-configure && _lr-start && _lr-log"
 alias lr-log="_lr-check-env && _lr-log"
 alias lr-shutdown="_lr-check-env && _lr-shutdown"
@@ -28,16 +29,16 @@ ITALIC='\033[3m'
 function _lr-start() {
   _lr-log-task "🚀  STARTING LIFERAY"
   _lr_execute \
-    "cd $LR_DEV_HOME" \
-    "echo ./$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/bin/startup.sh" \
+    "cd $LR_DEV_HOME/$LR_FOLDER" \
+    "sh ./bundles/tomcat-$LR_TOMCAT_VERSION/bin/startup.sh" \
     "cd -"
 }
 
 function _lr-shutdown() {
   _lr-log-task "✋  SHUTTING DOWN LIFERAY"
   _lr_execute \
-    "cd $LR_DEV_HOME" \
-    "sh ./$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/bin/shutdown.sh" \
+    "cd $LR_DEV_HOME/$LR_FOLDER" \
+    "sh ./bundles/tomcat-$LR_TOMCAT_VERSION/bin/shutdown.sh" \
     "cd -"
 }
 
@@ -72,15 +73,15 @@ function _lr-log-clean {
 function _lr-cleanup {
   _lr-log-task "🧹  DELETING work, state and data"
   _lr_execute \
-    "cd $LR_DEV_HOME/$LR_FOLDER/bundles" \
-    "rm -rf ./data ./work ./osgi/state" \
+    "cd $LR_DEV_HOME/$LR_FOLDER" \
+    "rm -rf ./bundles/data ./bundles/work ./bundles/osgi/state" \
     "cd -"
 }
 
 function _lr-configure {
   _LR_MEM_RE="s/Xmx[0-9]*[a-zA-Z]/Xmx${LR_RAM}/g"
-  _LR_PORT1_RE="s/port=\"8080\"/port=\"${LR_PORT_PREFIX}80\"/g"
-  _LR_PORT2_RE="s/port=\"8005\"/port=\"${LR_PORT_PREFIX}05\"/g"
+  _LR_PORT1_RE="s/port=\"[0-9][0-9]80\"/port=\"${LR_PORT_PREFIX}80\"/g"
+  _LR_PORT2_RE="s/port=\"[0-9][0-9]05\"/port=\"${LR_PORT_PREFIX}05\"/g"
 
   _lr-log-task "🌈  CONFIGURING"
   _lr_execute \
