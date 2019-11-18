@@ -1,4 +1,7 @@
-# ENV VARS CONFIGURATION (do not use ~ in the path to identify the home)
+# ENV VARS CONFIGURATION
+# Do not use `~` in the path to identify the home
+# Do not configure MySql if you are using Hypersonic
+
 # export LR_DEV_HOME="/Users/username/works/liferay"
 # export LR_VERSION=7.1
 # export LR_FOLDER=7.1
@@ -10,15 +13,15 @@
 # export LR_DB_PASSWORD="liferay"
 # export LR_DB_DATABASE="liferay_commerce"
 
-alias lr="cd $LR_DEV_HOME"
-alias lr-start="_lr-check-env && _lr-log-clean && _lr-configure && _lr-start && _lr-log"
-alias lr-log="_lr-check-env && _lr-log"
-alias lr-shutdown="_lr-check-env && _lr-shutdown"
-alias lr-deploy="_lr-deploy"
-alias lr-gogo="_lr-gogo"
-alias lr-cleanup="_lr-check-env && _lr-cleanup"
-alias lr-configure="_lr-check-env && _lr-configure"
-alias lr-sf="_lr-sf"
+alias lr="cd $LR_DEV_HOME"  # Go to Liferay home
+alias lr-start="_lr-check-env && _lr-log-clean && _lr-configure && _lr-start && _lr-log"  # Start Liferay portal
+alias lr-log="_lr-check-env && _lr-log"  # Tail log file
+alias lr-shutdown="_lr-check-env && _lr-shutdown"  # Shutdown Liferay Portal
+alias lr-deploy="_lr-deploy"  # Deploy the current folder
+alias lr-sf="_lr-sf"  # Run source formatting in the current folder
+alias lr-gogo="_lr-gogo"  # Open Gogo shell
+alias lr-cleanup="_lr-check-env && _lr-cleanup && _lr-mysql-clean"  # Cleanup bundle state folders and DB
+alias lr-configure="_lr-check-env && _lr-configure"  # Setup tomcat with ports and memory
 
 RED='\033[31m'
 GREEN='\033[32m'
@@ -28,7 +31,8 @@ ITALIC='\033[3m'
 
 function _lr-start() {
   _lr-log-task "🚀  STARTING LIFERAY"
-  _lr_execute \
+  [ ! -z "$LR_DB_DATABASE" ] && _lr-mysql-start
+  _lr-execute \
     "cd $LR_DEV_HOME/$LR_FOLDER" \
     "sh ./bundles/tomcat-$LR_TOMCAT_VERSION/bin/startup.sh" \
     "cd -"
@@ -36,7 +40,7 @@ function _lr-start() {
 
 function _lr-shutdown() {
   _lr-log-task "✋  SHUTTING DOWN LIFERAY"
-  _lr_execute \
+  _lr-execute \
     "cd $LR_DEV_HOME/$LR_FOLDER" \
     "sh ./bundles/tomcat-$LR_TOMCAT_VERSION/bin/shutdown.sh" \
     "cd -"
@@ -45,34 +49,34 @@ function _lr-shutdown() {
 function _lr-deploy() {
   PROFILE_PARAM=$([ -z "$LR_PROFILE" ] && echo "" || echo " -Dbuild.profile=$LR_PROFILE")
   _lr-log-task "🚂  DEPLOYING"
-  _lr_execute "blade gw deploy --parallel$PROFILE_PARAM"
+  _lr-execute "blade gw deploy --parallel$PROFILE_PARAM"
 }
 
 function _lr-sf() {
   _lr-log-task "💡  FORMATTING SOURCES"
-  _lr_execute "blade gw formatSource"
+  _lr-execute "blade gw formatSource"
 }
 
 function _lr-gogo() {
   TELNET_PORT=$([ -z "$LR_GOGO_PORT" ] && echo "11311" || echo "$LR_GOGO_PORT")
   _lr-log-task "⌨️  ACCESSING GOGO SHELL"
-  _lr_execute "telnet localhost $TELNET_PORT"
+  _lr-execute "telnet localhost $TELNET_PORT"
 }
 
 
 function _lr-log {
   _lr-log-task "📝  PRINTING LOG"
-  _lr_execute "tail -f -n 200 $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
+  _lr-execute "tail -f -n 200 $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
 }
 
 function _lr-log-clean {
   _lr-log-task "🧽  REMOVING LOG"
-  _lr_execute "cp /dev/null $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
+  _lr-execute "cp /dev/null $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION/logs/catalina.out"
 }
 
 function _lr-cleanup {
   _lr-log-task "🧹  DELETING work, state and data"
-  _lr_execute \
+  _lr-execute \
     "cd $LR_DEV_HOME/$LR_FOLDER" \
     "rm -rf ./bundles/data ./bundles/work ./bundles/osgi/state" \
     "cd -"
@@ -84,7 +88,7 @@ function _lr-configure {
   _LR_PORT2_RE="s/port=\"[0-9][0-9]05\"/port=\"${LR_PORT_PREFIX}05\"/g"
 
   _lr-log-task "🌈  CONFIGURING"
-  _lr_execute \
+  _lr-execute \
     "cd $LR_DEV_HOME/$LR_FOLDER/bundles/tomcat-$LR_TOMCAT_VERSION" \
     "sed -i.bkp -e $_LR_PORT1_RE -e $_LR_PORT2_RE ./conf/server.xml" \
     "sed -i.bkp -e $_LR_MEM_RE ./bin/setenv.sh" \
@@ -102,16 +106,15 @@ function _lr-check-env {
 function _lr-mysql-start() {
   if [ "$(pgrep mysql | wc -l)" -ne 1 ];
   then
-    echo "mysql.server start"
+    _lr-log-task "🐬  STARTING MYSQL"
+    _lr-execute "mysql.server start"
   fi
 }
 
 function _lr-mysql-clean() {
-  if [ -z "$LR_DB_USER" ] || [ -z "$LR_DB_PASSWORD" ] || [ -z "$LR_DB_DATABASE" ]
+  if [ ! -z "$LR_DB_USER" ] && [ ! -z "$LR_DB_PASSWORD" ] && [ ! -z "$LR_DB_DATABASE" ]
   then
-    echo -e "${RED}Mysql not configured${DEFAULT}"
-  else
-    echo -e "${GREEN}DROPPING DATABASE${DEFAULT}"
+    _lr-log-task "🗑  DROPPING DATABASE"
     mysql -u $LR_DB_USER -p$LR_DB_PASSWORD << END
 drop database $LR_DB_DATABASE;
 create database $LR_DB_DATABASE;
@@ -119,7 +122,7 @@ END
   fi
 }
 
-function _lr_execute {
+function _lr-execute {
   # set -x
   for i; do 
     _lr-log-command "$i"
