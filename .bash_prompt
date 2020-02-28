@@ -51,7 +51,7 @@ function usernamehost() {
 }
 
 function liferay_version() {
-	if [ ! -z "$LR_VERSION" ]; then echo " ${MAGENTA}[LR $LR_VERSION]"; fi
+	if [ ! -z "$LR_VERSION" ]; then echo -e "$LR_COLOR$LR_VERSION: "; fi
 }
 
 # iTerm Tab and Title Customization and prompt customization
@@ -65,4 +65,4 @@ function liferay_version() {
 # in the iterm tab
 # \[\e]1;\]$(basename $(dirname $PWD))/\W\[\a\]
 
-PS1="\n\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]${BOLD}\$(usernamehost)\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\$(liferay_version)\[$WHITE\]\n\$ \[$RESET\]"
+PS1="\n\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]${BOLD}\$(usernamehost)\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\n\$(liferay_version)\[$WHITE\]\$ \[$RESET\]"

@@ -21,6 +21,7 @@ alias lr-shutdown="_lr-check-env && _lr-shutdown"  # Shutdown Liferay Portal
 alias lr-deploy="_lr-deploy"  # Deploy the current folder
 alias lr-deploy-profile="_lr-deploy-profile"  # Deploy the current folder
 alias lr-sf="_lr-sf"  # Run source formatting in the current folder
+alias lr-translate="_lr-translate"  # Run translation service in the current folder
 alias lr-gogo="_lr-gogo"  # Open Gogo shell
 alias lr-cleanup="_lr-check-env && _lr-cleanup && _lr-mysql-clean"  # Cleanup bundle state folders and DB
 alias lr-configure="_lr-check-env && _lr-configure"  # Setup tomcat with ports and memory
@@ -49,12 +50,7 @@ function _lr-shutdown() {
 }
 
 function _lr-deploy() {
-  _lr-log-task "🚂  DEPLOYING"
-  _lr-execute "blade gw deploy --parallel"
-}
-
-function _lr-deploy-profile() {
-  PROFILE_PARAM=$([ -z "$LR_PROFILE" ] && echo "" || echo " -Dbuild.profile=$LR_PROFILE")
+  PROFILE_PARAM=$([ -z "$1" ] && echo "" || echo " -Dbuild.profile=$1")
   _lr-log-task "🚂  DEPLOYING"
   _lr-execute "blade gw deploy --parallel$PROFILE_PARAM"
 }
@@ -62,6 +58,12 @@ function _lr-deploy-profile() {
 function _lr-sf() {
   _lr-log-task "💡  FORMATTING SOURCES"
   _lr-execute "blade gw formatSource"
+}
+
+function _lr-translate() {
+  MS_KEY=$([ -z "$MS_TRANSLATOR_KEY" ] && echo "" || echo " -Pmicrosoft.translator.subscription.key=$MS_TRANSLATOR_KEY")
+  _lr-log-task "🌎  TRANSLATE"
+  _lr-execute "blade gw buildLang$MS_KEY"
 }
 
 function _lr-gogo() {
