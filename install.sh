@@ -6,7 +6,7 @@ read newhostname
 sudo scutil --set HostName $newhostname
 
 # install brew and brew cask
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew tap caskroom/cask
 brew tap caskroom/versions
 brew tap caskroom/fonts
@@ -21,7 +21,6 @@ sudo easy_install httpcode
 ## terminal
 brew install coreutils \
              tree \
-             googler \
              node \
              the_silver_searcher \
              exiftool \
@@ -32,10 +31,10 @@ brew install coreutils \
 
 ## browsers
 brew cask install google-chrome \
-                  firefox
+                  firefox \
+                  firefoxdeveloperedition
 # brew cask install google-chrome-canary
 # brew cask install firefox-beta
-# brew cask install firefoxdeveloperedition
 # brew cask install opera
 # brew cask install opera-beta
 # brew cask install opera-developer
