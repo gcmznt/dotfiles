@@ -42,3 +42,6 @@
 #  added = yellow
 #  changed = green
 #  untracked = cyan
+
+[diff "exif"]
+  textconv = exiftool

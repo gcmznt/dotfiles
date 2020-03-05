@@ -5,11 +5,13 @@ echo "Enter the name for the computer:"
 read newhostname
 sudo scutil --set HostName $newhostname
 
+xcode-select --install
+
 # install brew and brew cask
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-brew tap caskroom/cask
-brew tap caskroom/versions
-brew tap caskroom/fonts
+brew tap homebrew/cask-versions
+brew tap homebrew/cask-fonts
+
 sudo chown -R $USER /usr/local/*
 export PATH="/usr/local/bin:$PATH"
 
@@ -18,88 +20,114 @@ export PATH="/usr/local/bin:$PATH"
 sudo easy_install -U Pygments
 sudo easy_install httpcode
 
+## app store
+mas install 990588172 ## Gestimer
+mas install 507257563 ## Sip
+
 ## terminal
-brew install coreutils \
-             tree \
-             node \
-             the_silver_searcher \
-             exiftool \
-             jid \
-             fzf \
-             git \
-             yarn
+brew install coreutils
+brew install direnv
+brew install exiftool
+brew install fzf
+brew install git
+brew install jid
+brew install mas
+brew install node
+brew install nvm
+mkdir ~/.nvm
+brew install the_silver_searcher
+brew install tree
+brew install yarn
 
 ## browsers
-brew cask install google-chrome \
-                  firefox \
-                  firefoxdeveloperedition
-# brew cask install google-chrome-canary
+brew cask install firefox
+brew cask install firefox-developer-edition
+brew cask install google-chrome
+# brew cask install blisk
+# brew cask install brave
 # brew cask install firefox-beta
+# brew cask install google-chrome-canary
 # brew cask install opera
 # brew cask install opera-beta
 # brew cask install opera-developer
 # brew cask install safari-technology-preview
-# brew cask install webkit-nightly
-# brew cask install brave
-# brew cask install vivaldi
-# brew cask install blisk
 # brew cask install servo
+# brew cask install vivaldi
+# brew cask install webkit-nightly
 
 ## applications
-brew cask install iterm2 \
-                  visual-studio-code \
-                  alfred \
-                  transmit \
-                  slack \
-                  itsycal \
-                  numi \
-                  keepingyouawake \
-                  kap \
-                  vlc \
-                  qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv qlimagesize webpquicklook suspicious-package quicklookase qlvideo \
-                  aerial \
-                  tunnelbear
-
-# brew cask install mou
-# brew cask install betterzipql
-# brew cask install tunnelblick
-# brew cask install lacona
+brew cask install aerial
+brew cask install alfred
+brew cask install iterm2
+brew cask install itsycal
+brew cask install keepingyouawake
+brew cask install numi
+brew cask install rectangle
+brew cask install runjs
+brew cask install slack
+brew cask install transmit
+brew cask install visual-studio-code
+brew cask install vlc
+# brew cask install kap
+# brew cask install sip
+# brew cask install tunnelbear
 # brew cask install atom
-# brew cask install sublime-text
+# brew cask install betterzipql
 # brew cask install docker
-printf "\n==== Install from app store ====\nSip, Moom and Gestimer\n===========\n"
+# brew cask install lacona
+# brew cask install mou
+# brew cask install sublime-text
+# brew cask install tunnelblick
+
+## finder preview
+brew cask install qlcolorcode
+brew cask install qlimagesize
+brew cask install qlmarkdown
+brew cask install qlprettypatch
+brew cask install qlstephen
+brew cask install qlvideo
+brew cask install quicklook-csv
+brew cask install quicklook-json
+brew cask install quicklookase
+brew cask install suspicious-package
+brew cask install webpquicklook
 
 ## fonts
 brew cask install font-fira-code
 
+printf "\n==== Install Dank Mono font ====\n\n"
+
 # open background applications
+open -a alfred\ 4
+open -a gestimer
 open -a itsycal
-open -a alfred\ 3
 open -a keepingyouawake
+open -a rectangle
+open -a sip
 
 ## node
-npm i -g npm \
-         caniuse-cmd \
-         code-stats \
-         http-server \
-         nodemon \
-         space-hogs \
-         tldr \
-         git-bc \
-         how2 \
-         sloc \
-         stylestats \
-         webpagetest \
-         yo \
-         pageres-cli \
-         ntl \
-         gulp-cli \
-         grunt-cli \
-         eslint \
-         bower \
-         webpack \
-         stylelint \
-         diff-so-fancy
+npm i -g npm
+npm i -g bower
+npm i -g caniuse-cmd
+npm i -g code-stats
+npm i -g diff-so-fancy
+npm i -g eslint
+npm i -g git-bc
+npm i -g grunt-cli
+npm i -g gulp-cli
+npm i -g how2
+npm i -g http-server
+npm i -g nodemon
+npm i -g ntl
+npm i -g pageres-cli
+npm i -g sloc
+npm i -g space-hogs
+npm i -g stylelint
+npm i -g stylestats
+npm i -g tldr
+npm i -g webpack
+npm i -g webpagetest
+npm i -g yo
 
 # remove last login message in terminal
 touch ~/.hushlogin
@@ -126,10 +154,11 @@ git submodule update
 
 # configure git
 cp ~/works/dotfiles/.gitconfig ~/.gitconfig
-git config --global diff.exif.textconv exiftool
 
 # bootstrap bash_profile
 cp ~/works/dotfiles/.bash_profile_home_example ~/.bash_profile
+sed -i '' 's/giko/'$(whoami)'/g' ~/.bash_profile
+
 cp ~/works/dotfiles/.inputrc ~/.inputrc
 
 # configure macosx (https://gist.github.com/erikh/2260182)
@@ -184,5 +213,21 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder AppleShowAllFiles YES
 # Change Apple OS X Dock size
 defaults write com.apple.dock tilesize -int 32
+
+# Change screen saver
+defaults write com.apple.screensaver "moduleDict" -dict-add "moduleName" -string "Aerial"
+defaults write com.apple.screensaver "moduleDict" -dict-add "path" -string "/Users/"$(whoami)"/Library/Screen Savers/Aerial.saver"
+
+# Mostra percentuale batteria
+defaults write com.apple.menuextra.battery ShowPercent YES
+
+# Imposta formato orologio
+defaults write com.apple.menuextra.clock DateFormat -string "HH:mm"
+
+# Evita riordino spaces
+defaults write com.apple.dock mru-spaces -bool false
+
 # reload all application affected
-for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+for app in Safari Finder Dock Mail SystemUIServer; do
+    killall "$app" >/dev/null 2>&1;
+done

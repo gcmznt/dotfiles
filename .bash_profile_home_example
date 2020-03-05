@@ -1,3 +1,2 @@
 default_username='giko'
 [ -r "$HOME/works/dotfiles/.bash_profile" ] && source ~/works/dotfiles/.bash_profile
-
