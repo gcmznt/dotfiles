@@ -4,6 +4,7 @@
 
 [alias]
   co = checkout
+  ca = "! git add -A && git commit -m"
   st = status
   ci = commit
   br = branch
