@@ -61,6 +61,7 @@ brew cask install alfred
 brew cask install iterm2
 brew cask install itsycal
 brew cask install keepingyouawake
+brew cask install notion
 brew cask install numi
 brew cask install rectangle
 brew cask install runjs
