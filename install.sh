@@ -20,10 +20,6 @@ export PATH="/usr/local/bin:$PATH"
 sudo easy_install -U Pygments
 sudo easy_install httpcode
 
-## app store
-mas install 990588172 ## Gestimer
-mas install 507257563 ## Sip
-
 ## terminal
 brew install coreutils
 brew install direnv
@@ -40,63 +36,72 @@ brew install tree
 brew install yarn
 
 ## browsers
-brew cask install firefox
-brew cask install firefox-developer-edition
-brew cask install google-chrome
-# brew cask install blisk
-# brew cask install brave
-# brew cask install firefox-beta
-# brew cask install google-chrome-canary
-# brew cask install opera
-# brew cask install opera-beta
-# brew cask install opera-developer
-# brew cask install safari-technology-preview
-# brew cask install servo
-# brew cask install vivaldi
-# brew cask install webkit-nightly
+brew install --cask firefox
+brew install --cask firefox-developer-edition
+brew install --cask google-chrome
+# brew install --cask blisk
+# brew install --cask brave
+# brew install --cask firefox-beta
+# brew install --cask google-chrome-canary
+# brew install --cask opera
+# brew install --cask opera-beta
+# brew install --cask opera-developer
+# brew install --cask safari-technology-preview
+# brew install --cask servo
+# brew install --cask vivaldi
+# brew install --cask webkit-nightly
 
 ## applications
-brew cask install aerial
-brew cask install alfred
-brew cask install iterm2
-brew cask install itsycal
-brew cask install keepingyouawake
-brew cask install notion
-brew cask install numi
-brew cask install rectangle
-brew cask install runjs
-brew cask install slack
-brew cask install transmit
-brew cask install visual-studio-code
-brew cask install vlc
-# brew cask install kap
-# brew cask install sip
-# brew cask install tunnelbear
-# brew cask install atom
-# brew cask install betterzipql
-# brew cask install docker
-# brew cask install lacona
-# brew cask install mou
-# brew cask install sublime-text
-# brew cask install tunnelblick
+brew install --cask aerial
+brew install --cask alfred
+brew install --cask authy
+brew install --cask discord
+brew install --cask iterm2
+brew install --cask itsycal
+brew install --cask kap
+brew install --cask keepingyouawake
+brew install --cask notion
+brew install --cask numi
+brew install --cask rectangle
+brew install --cask runcat
+brew install --cask runjs
+brew install --cask shottr
+brew install --cask sip
+brew install --cask slack
+brew install --cask transmit
+brew install --cask visual-studio-code
+brew install --cask vlc
+# brew install --cask tunnelbear
+# brew install --cask atom
+# brew install --cask betterzipql
+# brew install --cask docker
+# brew install --cask lacona
+# brew install --cask mou
+# brew install --cask sublime-text
+# brew install --cask tunnelblick
 
 ## finder preview
-brew cask install qlcolorcode
-brew cask install qlimagesize
-brew cask install qlmarkdown
-brew cask install qlprettypatch
-brew cask install qlstephen
-brew cask install qlvideo
-brew cask install quicklook-csv
-brew cask install quicklook-json
-brew cask install quicklookase
-brew cask install suspicious-package
-brew cask install webpquicklook
+brew install --cask qlcolorcode
+brew install --cask qlimagesize
+brew install --cask qlmarkdown
+brew install --cask qlprettypatch
+brew install --cask qlstephen
+brew install --cask qlvideo
+brew install --cask quicklook-csv
+brew install --cask quicklook-json
+brew install --cask quicklookase
+brew install --cask suspicious-package
+brew install --cask webpquicklook
 
 ## fonts
-brew cask install font-fira-code
+brew install --cask font-fira-code
 
 printf "\n==== Install Dank Mono font ====\n\n"
+
+## app store
+mas install 990588172 ## Gestimer
+mas install 507257563 ## Sip
+mas install 1429033973 ## Runcat
 
 # open background applications
 open -a alfred\ 4
@@ -104,17 +109,18 @@ open -a gestimer
 open -a itsycal
 open -a keepingyouawake
 open -a rectangle
+open -a runcat
 open -a sip
 
 ## node
 npm i -g npm
-npm i -g bower
+# npm i -g bower
 npm i -g caniuse-cmd
 npm i -g code-stats
 npm i -g diff-so-fancy
 npm i -g eslint
 npm i -g git-bc
-npm i -g grunt-cli
+# npm i -g grunt-cli
 npm i -g gulp-cli
 npm i -g how2
 npm i -g http-server
